@@ -1,44 +1,46 @@
-#include <stdio.h>
-#include <stdlib.h>
+import java.util.Scanner;
 
-struct node {
-    int data;
-    struct node *next;
-};
+public class CalculatorApp {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        double num1, num2, result;
+        char operator;
 
-struct node *front = NULL;
-struct node *rear = NULL;
+        System.out.println("===== Simple Calculator =====");
+        System.out.print("Enter first number: ");
+        num1 = sc.nextDouble();
 
-void insert();
-void deleteNode();
-void display();
+        System.out.print("Enter an operator (+, -, *, /): ");
+        operator = sc.next().charAt(0);
 
-int main() {
-    int choice = 0;
+        System.out.print("Enter second number: ");
+        num2 = sc.nextDouble();
 
-    while (choice != 4) {
-        printf("\n************************* Main Menu *****************************\n");
-        printf("1. Insert an element\n");
-        printf("2. Delete an element\n");
-        printf("3. Display the queue\n");
-        printf("4. Exit\n");
-        printf("Enter your choice: ");
-        scanf("%d", &choice);
-
-        switch (choice) {
-            case 1:
-                insert();
+        switch (operator) {
+            case '+':
+                result = num1 + num2;
+                System.out.println("Result: " + result);
                 break;
-            case 2:
-                deleteNode();
+            case '-':
+                result = num1 - num2;
+                System.out.println("Result: " + result);
                 break;
-            case 3:
-                display();
+            case '*':
+                result = num1 * num2;
+                System.out.println("Result: " + result);
                 break;
-            case 4:
-                printf("\nExiting program...\n");
-                exit(0);
+            case '/':
+                if (num2 != 0) {
+                    result = num1 / num2;
+                    System.out.println("Result: " + result);
+                } else {
+                    System.out.println("Error: Division by zero is not allowed.");
+                }
+                break;
             default:
-                printf("\nEnter a valid choice!\n");
-                break; 
-                
+                System.out.println("Invalid operator!");
+        }
+
+        sc.close();
+    }
+}
